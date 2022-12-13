@@ -25,16 +25,14 @@ class Card:
         index_list = sample(index_, 5)
         return index_list
 
-    def create_string(self):
+    def create_string(self, gen_1):
         '''
         Формирует  lst из 5 чисел и 4 None.
         :return: lst
         '''
-        temp = self.barrel(15)
-        self.gen_1 = (i for i in temp)
 
         temp_index = self.random_index()
-        lst = [next(self.gen_1) if i in temp_index else ' ' for i in range(9)]
+        lst = [next(gen_1) if i in temp_index else ' ' for i in range(9)]
         return lst
 
     def get_card(self):
@@ -43,9 +41,12 @@ class Card:
         Необходима функция create_string
         :return: list_1, list_2, list_3
         '''
+        temp = self.barrel(15)
+        gen_1 = (i for i in temp)
+
         all_list = []
         for i in range(3):
-            all_list.append(self.create_string())
+            all_list.append(self.create_string(gen_1))
 
         return all_list
 
