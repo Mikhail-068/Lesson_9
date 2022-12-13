@@ -1,7 +1,7 @@
 from random import sample, randint
 
 
-class Card:
+class GetCard:
 
     def __init__(self):
         pass
@@ -80,7 +80,7 @@ class Card:
         print('-' * 30)
 
 
-card_ = Card()
+card_ = GetCard()
 
 a,b,c = card_.card()
 print(a, b, c, sep='\n')
