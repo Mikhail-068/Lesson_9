@@ -1,17 +1,17 @@
 from random import sample, randint
 
 
-class GetCard:
+class Card:
 
     def __init__(self):
-        pass
-
+        self.list_1, self.list_2, self.list_3 = self.get_card()
 
     def barrel(self, n):
         '''
         бочонки (1 - 90)
         :return: n бочонков
         '''
+
 
         bar = [(i + 1) for i in range(90)]
         bag = sample(bar, n)
@@ -37,7 +37,7 @@ class GetCard:
         lst = [next(self.gen_1) if i in temp_index else ' ' for i in range(9)]
         return lst
 
-    def card(self):
+    def get_card(self):
         '''
         Создаем 3 строки (списка) по 9 значений для card
         Необходима функция create_string
@@ -61,17 +61,16 @@ class GetCard:
         s = f'| {s} |'
         return s
 
-
-    def show_card(self):
+    def show_card(self, list_1, list_2, list_3):
         '''
         Для красивого отображения card,
         нужна функция "convert_card"
         :param convert_str:
         :return: показывает card
         '''
-        str1 = self.convert_str(self.list_1)
-        str2 = self.convert_str(self.list_2)
-        str3 = self.convert_str(self.list_3)
+        str1 = self.convert_str(list_1)
+        str2 = self.convert_str(list_2)
+        str3 = self.convert_str(list_3)
 
         print('-' * 30)
         print(str1)
@@ -80,9 +79,10 @@ class GetCard:
         print('-' * 30)
 
 
-card_ = GetCard()
+if __name__=='__main__':
+    card_ = Card()
 
-a,b,c = card_.card()
-print(a, b, c, sep='\n')
+    a,b,c = card_.get_card()
+    print(a, b, c, sep='\n')
 
-card_.show_card()
+    card_.show_card()
