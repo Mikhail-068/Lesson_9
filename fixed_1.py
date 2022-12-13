@@ -2,7 +2,11 @@ from Card import Card
 
 card_ = Card()
 
-a, b, c = card_.get_card()
-print(a, b, c, sep='\n')
+Computer = card_.get_card()
+Mike = card_.get_card()
 
-card_.show_card(a, b, c)
+
+print(Computer)
+
+
+

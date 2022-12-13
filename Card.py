@@ -4,7 +4,7 @@ from random import sample, randint
 class Card:
 
     def __init__(self):
-        self.list_1, self.list_2, self.list_3 = self.get_card()
+        pass
 
     def barrel(self, n):
         '''
@@ -43,11 +43,11 @@ class Card:
         Необходима функция create_string
         :return: list_1, list_2, list_3
         '''
-        self.list_1 = self.create_string()
-        self.list_2 = self.create_string()
-        self.list_3 = self.create_string()
+        all_list = []
+        for i in range(3):
+            all_list.append(self.create_string())
 
-        return self.list_1, self.list_2, self.list_3
+        return all_list
 
     def convert_str(self, arg):
         '''
@@ -61,28 +61,24 @@ class Card:
         s = f'| {s} |'
         return s
 
-    def show_card(self, list_1, list_2, list_3):
+    def show_card(self, lst):
         '''
         Для красивого отображения card,
         нужна функция "convert_card"
         :param convert_str:
         :return: показывает card
         '''
-        str1 = self.convert_str(list_1)
-        str2 = self.convert_str(list_2)
-        str3 = self.convert_str(list_3)
+        print('-' * 30)
+        for i in range(3):
+            print(self.convert_str(lst[i]))
+        print('-' * 30)
 
-        print('-' * 30)
-        print(str1)
-        print(str2)
-        print(str3)
-        print('-' * 30)
 
 
 if __name__=='__main__':
     card_ = Card()
 
-    a,b,c = card_.get_card()
-    print(a, b, c, sep='\n')
+    lst = card_.get_card()
 
-    card_.show_card()
+    card_.show_card(lst)
+    print(lst)
