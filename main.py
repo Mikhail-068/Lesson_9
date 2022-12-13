@@ -1,7 +1,6 @@
 from random import sample, randint
 
 
-
 def barrel(n):
     '''
     бочонки (1 - 90)
@@ -11,6 +10,8 @@ def barrel(n):
     bar = [(i + 1) for i in range(90)]
     bag = sample(bar, n)
     return bag
+
+
 def random_index():
     '''
     :return: 5 случайных индексов
@@ -18,6 +19,8 @@ def random_index():
     index_ = [i for i in range(9)]
     index_list = sample(index_, 5)
     return index_list
+
+
 def create_string(gen_1):
     '''
     Формирует  lst из 5 чисел и 4 None.
@@ -26,6 +29,8 @@ def create_string(gen_1):
     temp_index = random_index()
     lst = [next(gen_1) if i in temp_index else ' ' for i in range(9)]
     return lst
+
+
 def card():
     '''
     Создаем 3 строки (списка) по 9 значений для card
@@ -40,6 +45,8 @@ def card():
     list_3 = create_string(gen_1)
 
     return list_1, list_2, list_3
+
+
 def convert_str(arg):
     '''
     Переводит список в строку + добавляет одинаковую длину.
@@ -51,6 +58,8 @@ def convert_str(arg):
     s = ' '.join(b1)
     s = f'| {s} |'
     return s
+
+
 def show_card(s1, s2, s3):
     '''
     Для красивого отображения card,
@@ -67,7 +76,6 @@ def show_card(s1, s2, s3):
     print(str2)
     print(str3)
     print('-' * 30)
-
 
 
 s1, s2, s3 = card()
