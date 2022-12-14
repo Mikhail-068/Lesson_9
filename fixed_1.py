@@ -1,16 +1,9 @@
 from Card import Card
 import copy
 
-# card_ = Card()
-#
-# lst = card_.get_card()
+
 
 class Play(Card):
-
-    def __init__(self, computer, user):
-
-        self.computer = computer
-        self.user = user
 
     def happy_end(self, lst):
         '''
@@ -80,9 +73,6 @@ class Play(Card):
 
         print(f'Выпало: {check}\n')
 
-        user1 = copy.deepcopy(self.user)
-
-
         computer, status_pc = self.recognition(check, self.computer)
         user, status_user = self.recognition(check, self.user)
 
@@ -90,6 +80,41 @@ class Play(Card):
         self.show_card(user)
 
         return computer, status_pc, user, status_user
+
+    def go(self):
+
+        text = '''
+        ===== Выбирите игру =====
+        
+        1. Автоматически
+        2. Вручную    
+        '''.strip()
+
+        select = input(f'{text}\n')
+        if select == '1':
+            auto=True
+
+        else:
+            auto=False
+
+        self.computer = self.get_card()
+        self.user = self.get_card()
+
+        if auto:
+            while True:
+                   comp, st_PC, user, st_user = self.fight_auto()
+                   PC = self.happy_end(comp)
+                   USER = self.happy_end(user)
+                   if PC:
+                          print('Выиграл Computer...')
+                          self.show_card(comp)
+                          self.show_card(user)
+                          break
+                   if USER:
+                          print('Вы выиграли !!!')
+                          self.show_card(comp)
+                          self.show_card(user)
+                          break
 
 
 
@@ -99,9 +124,8 @@ class Play(Card):
 
 if __name__=='__main__':
 
-    us = input('У вас есть? Д/Н\n')
-    if us.upper() != 'Д':
-        print('Проиграл!!!')
+    play = Play()
+    play.go()
 
 
 
