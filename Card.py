@@ -3,9 +3,6 @@ from random import sample, randint
 
 class Card:
 
-    def __init__(self):
-        pass
-
     def barrel(self, n):
         '''
         бочонки (1 - 90)
