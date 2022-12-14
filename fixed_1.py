@@ -7,12 +7,21 @@ lst = card_.get_card()
 class Play(Card):
 
     def __init__(self, computer, user):
+
         self.computer = computer
         self.user = user
 
-
-    def show_1(self):
-        print(self.computer)
+    def happy_end(self, lst):
+        '''
+        Проверяет остались ли в карточке незакрашенные значения!!!
+        :param lst: принимает карточку
+        :return: bool
+        '''
+        for s in lst:
+            for n in s:
+                if type(n) != str:
+                    return False
+        return True
 
     def recognition(self, check, lst):
         status = False
@@ -24,12 +33,13 @@ class Play(Card):
         return lst, status
 
     def fight(self):
-        check = self.barrel(1)
+        check = self.barrel(1)[0]
         print(f'Выпало: {check}\n')
 
 
 
-        comp, status_pc = self.recognition(check, self.computer)
+
+        computer, status_pc = self.recognition(check, self.computer)
         user, status_user = self.recognition(check, self.user)
 
         # if status_pc:
@@ -48,7 +58,7 @@ class Play(Card):
 
 
 
-        self.show_card(comp)
+        self.show_card(computer)
         print(status_pc)
         print()
 
@@ -80,16 +90,24 @@ if __name__=='__main__':
     card_ = Card()
     computer = card_.get_card()
     user = card_.get_card()
+    play = Play(computer, user)
 
     st = False
 
-    while st != True:
-        # play = Play(computer, user)
-        # status1, status2 = play.fight()
-        # if status1: st = True
-        # if status2: st = True
 
-        play.recognition(16, )
+    while st != True:
+        status_pc, status_user = play.fight()
+        if status_pc:
+            st = True
+            print('Победил PC')
+        if status_user:
+            st = True
+            print('Победил user')
+
+
+    # play.fight()
+
+
 
 
 
