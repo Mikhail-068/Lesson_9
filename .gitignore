@@ -3,3 +3,4 @@ venv/
 .idea/
 .gitignore
 misc.xml
+ __pycache__/
