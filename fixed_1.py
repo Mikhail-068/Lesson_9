@@ -37,8 +37,6 @@ class Play(Card):
         computer, status_pc = self.recognition(check, self.computer)
         user, status_user = self.recognition(check, self.user)
 
-        # self.show_card(computer)
-        # self.show_card(user)
 
         if status_pc:
             print('PC зачеркнул')
@@ -103,6 +101,21 @@ class Play(Card):
         if auto:
             while True:
                    comp, st_PC, user, st_user = self.fight_auto()
+                   PC = self.happy_end(comp)
+                   USER = self.happy_end(user)
+                   if PC:
+                          print('Выиграл Computer...')
+                          self.show_card(comp)
+                          self.show_card(user)
+                          break
+                   if USER:
+                          print('Вы выиграли !!!')
+                          self.show_card(comp)
+                          self.show_card(user)
+                          break
+        else:
+            while True:
+                   comp, st_PC, user, st_user = self.fight_manually()
                    PC = self.happy_end(comp)
                    USER = self.happy_end(user)
                    if PC:
