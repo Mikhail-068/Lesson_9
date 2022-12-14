@@ -6,13 +6,13 @@ card_ = Card()
 computer = card_.get_card()
 user = card_.get_card()
 
+
+
+
+#
+# ex1 = [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
 play = Play(computer, user)
 
-ex1 = [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
-
-
-for i in range(9):
-       ex1, _ = play.recognition(i, ex1)
 
 def happy_end(lst):
        '''
@@ -28,5 +28,17 @@ def happy_end(lst):
 
 
 
-a = hapy_end(ex1)
-print(a)
+while True:
+       comp, st_PC, user, st_user = play.fight_manually()
+       PC = play.happy_end(comp)
+       USER =  play.happy_end(user)
+       if PC:
+              print('Выиграл Computer...')
+              play.show_card(comp)
+              play.show_card(user)
+              break
+       if USER:
+              print('Вы выиграли !!!')
+              play.show_card(comp)
+              play.show_card(user)
+              break

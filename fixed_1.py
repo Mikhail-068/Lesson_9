@@ -1,8 +1,9 @@
 from Card import Card
+import copy
 
-card_ = Card()
-
-lst = card_.get_card()
+# card_ = Card()
+#
+# lst = card_.get_card()
 
 class Play(Card):
 
@@ -32,54 +33,65 @@ class Play(Card):
                 status = True
         return lst, status
 
-    def fight(self):
+    def fight_manually(self):
         check = self.barrel(1)[0]
+
         print(f'Выпало: {check}\n')
 
-
+        user1 = copy.deepcopy(self.user)
 
 
         computer, status_pc = self.recognition(check, self.computer)
         user, status_user = self.recognition(check, self.user)
 
-        # if status_pc:
-        #     print('PC зачеркнул')
-        # else:
-        #     print('У PC ничего нет')
-        #
-        # if status_user:
-        #     us = input('У вас есть? Д/Н\n')
-        #     if us.upper() != 'Д':
-        #         print('Проиграл!!!')
-        # else:
-        #     us = input('У вас есть? Д/Н\n')
-        #     if us.upper() != 'Н':
-        #         print('Проиграл!!!')
+        # self.show_card(computer)
+        # self.show_card(user)
+
+        if status_pc:
+            print('PC зачеркнул')
+            self.show_card(computer)
+            print()
+        else:
+            print('У PC ничего нет')
+            self.show_card(computer)
+            print()
+
+        if status_user:
+            self.show_card(user1)
+            us = input('У вас есть? Д/Н\n')
+            if us.upper() != 'Д':
+                print('Проиграл!!!')
 
 
+        else:
+            self.show_card(user1)
+            us = input('У вас есть? Д/Н\n')
+            if us.upper() != 'Н':
+                print('Проиграл!!!')
+
+
+
+
+
+        return computer, status_pc, user, status_user
+
+    def fight_auto(self):
+        check = self.barrel(1)[0]
+
+        print(f'Выпало: {check}\n')
+
+        user1 = copy.deepcopy(self.user)
+
+
+        computer, status_pc = self.recognition(check, self.computer)
+        user, status_user = self.recognition(check, self.user)
 
         self.show_card(computer)
-        print(status_pc)
-        print()
-
         self.show_card(user)
-        print(status_user)
 
-        return status_pc, status_user
+        return computer, status_pc, user, status_user
 
-        # if status1:
-        #     print('PC зачеркнул')
-        # else:
-        #     print('У PC ничего нет')
-        #
-        # if status2:
-        #     us = input('У вас есть? Д/Н\n')
-        #     if us.upper() != 'Д':
-        #         print('Проиграл!!!')
-        # else:
-        #     us = input('У вас есть? Д/Н\n')
-        #     if us.upper() != 'Н':
-        #         print('Проиграл!!!')
+
 
 
 
@@ -87,26 +99,9 @@ class Play(Card):
 
 if __name__=='__main__':
 
-    card_ = Card()
-    computer = card_.get_card()
-    user = card_.get_card()
-    play = Play(computer, user)
-
-    st = False
-
-
-    while st != True:
-        status_pc, status_user = play.fight()
-        if status_pc:
-            st = True
-            print('Победил PC')
-        if status_user:
-            st = True
-            print('Победил user')
-
-
-    # play.fight()
-
+    us = input('У вас есть? Д/Н\n')
+    if us.upper() != 'Д':
+        print('Проиграл!!!')
 
 
 
